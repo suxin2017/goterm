@@ -10,15 +10,13 @@ This is a small component of a much larger system including authentication, acce
 ## Getting
 
 ```
-go get github.com/freman/goterm
+go get github.com/suxin2017/goterm
 ```
 
 ## Running
 
-Not included is https://github.com/sourcelair/xterm.js
+```
+go run main.go
+```
 
-```
-cd src/github.com/freman/goterm/assets
-git clone https://github.com/sourcelair/xterm.js
-$GOPATH/bin/goterm -assets `pwd`
-```
+fork from [https://github.com/freman/goterm](https://github.com/freman/goterm)
