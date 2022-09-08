@@ -1,4 +1,4 @@
-module suxin2017/goterm
+module github.com/suxin2017/goterm
 
 go 1.17
 
