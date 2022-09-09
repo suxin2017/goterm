@@ -37,7 +37,7 @@ func handleWebsocket(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cmd := exec.Command("/bin/zsh", "-l")
+	cmd := exec.Command("/bin/bash", "-l")
 	cmd.Env = append(os.Environ(), "TERM=xterm")
 
 	tty, err := pty.Start(cmd)
@@ -53,6 +53,7 @@ func handleWebsocket(w http.ResponseWriter, r *http.Request) {
 		conn.Close()
 	}()
 
+	// read tty to websocket
 	go func() {
 		for {
 			buf := make([]byte, 1024)
@@ -66,6 +67,7 @@ func handleWebsocket(w http.ResponseWriter, r *http.Request) {
 		}
 	}()
 
+	// write tty from websocket
 	for {
 		messageType, reader, err := conn.NextReader()
 		if err != nil {
@@ -125,7 +127,7 @@ func handleWebsocket(w http.ResponseWriter, r *http.Request) {
 func main() {
 	var listen = flag.String("listen", "127.0.0.1:3000", "Host:port to listen on")
 	var assetsPath = flag.String("assets", "./assets", "Path to assets")
-
+	print("http://127.0.0.1:3000")
 	flag.Parse()
 
 	r := mux.NewRouter()
